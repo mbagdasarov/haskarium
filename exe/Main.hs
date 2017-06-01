@@ -84,15 +84,13 @@ figure = \case
         ]
 
 draw :: World -> Picture
-draw creatures = pictures $ map drawCreature creatures
+draw = pictures . map drawCreature
 
 onEvent :: Event -> World -> World
 onEvent _ world = world
 
 onTick :: Float -> World -> World
-onTick dt creatures = map update' creatures
-  where
-    update' creature = updateCreature dt creature
+onTick = map . updateCreature
 
 updateCreature :: Float -> Creature -> Creature
 updateCreature dt creature = case species of
